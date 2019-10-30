@@ -1,10 +1,11 @@
 import React from 'react'
 import {Container} from './styled'
+import Countdown from '../../components/countdown'
 
 const Home = () =>{
     return(
         <Container>
-<h1>Home</h1>
+<Countdown timeTillDate="11 01 2019, 8:00 pm"/>
         </Container>
         
     );
