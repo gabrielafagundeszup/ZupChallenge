@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navbar, Container, Menu,ItemContainer, ItemMenu } from './styled'
 import Button from '../../components/button'
-import { Link } from "react-router-dom";
 
 const Nav = () => {
     return (
