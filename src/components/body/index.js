@@ -1,23 +1,34 @@
 import React from 'react'
 import { Route, Switch } from "react-router-dom";
-import { BodyContainer, BodyBackground, CurvesBackground, VideoTag } from './styled'
+import { BodyBackground } from './styled'
 import Home from '../../containers/Home'
 import Challenges from '../../containers/Challenges'
 import Players from '../../containers/Players'
 import Infos from '../../containers/Infos'
-import Background from '../../core/assets/video/Background.mp4'
-import AnimatedBackgroundColor from '../../components/AnimatedBackgroundColor'
+import Particles from 'react-particles-js';
 
 const BodyApp = (props) => {
-  // document.querySelector('video').playbackRate = 1.25;
   return (
     <BodyBackground>
-      <VideoTag autoPlay loop muted playbackRate="0.2"> 
-        <source src={Background} type='video/mp4' />
-      </VideoTag>
-      <AnimatedBackgroundColor/>
-      {/* <BodyContainer></BodyContainer> */}
-      {/* <CurvesBackground></CurvesBackground> */}
+      <Particles
+    params={{
+	    "particles": {
+	        "number": {
+	            "value": 50
+	        },
+	        "size": {
+	            "value": 3
+	        }
+	    },
+	    "interactivity": {
+	        "events": {
+	            "onhover": {
+	                "enable": true,
+	                "mode": "repulse"
+	            }
+	        }
+	    }
+	}} />
       <Switch>
         <Route
           exact

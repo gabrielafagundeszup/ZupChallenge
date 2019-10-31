@@ -1,29 +1,21 @@
 import styled from 'styled-components'
-import { Link } from "react-router-dom";
 
 export const CountdownWrapper = styled.div`
 display: flex;
-align-items: center;
-justify-content: center;
 flex-wrap: wrap;
 font-size: 40px;
-    align-items: baseline;
-    color:#fff;
+align-items: center;
+color: #fff;
 `
 
 export const CountdownItem = styled.div`
-font-family:${({ theme }) => theme.typography.families.title};
+font-family:${({ theme }) => theme.typography.families.text};
 color: #fff;
-font-size: 90px;
+font-size: 10rem;
 display: flex;
 align-items: center;
-justify-content: center;
 flex-direction: column;
-margin: 10px;
-padding-top: 10px;
-position: relative;
-width: 100px;
-height: 100px;
+width: 200px;
 & span{
   font-family:${({ theme }) => theme.typography.families.text};
 	font-size: 12px;

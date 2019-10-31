@@ -1,7 +1,15 @@
 import React from 'react'
-import {StyledButton} from './styled'
+import {StyledButton, BigButton} from './styled'
 
 const Button = props =>{
+
+    if(props.type=== 'big'){
+        return(
+            <BigButton>
+                {props.children}
+            </BigButton>
+        )
+    }
     return(
         <StyledButton>
             {props.children}
