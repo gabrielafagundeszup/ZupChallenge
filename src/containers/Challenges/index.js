@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import { Container, Title, ChallengesWrap, ChallengeItem } from './styled'
 import _ from 'lodash'
 import {
@@ -9,6 +9,8 @@ import {
     useParams,
     useRouteMatch
 } from "react-router-dom";
+import services from '../../services/Services'
+import Challenge from '../../components/challenge'
 
 
 function Challenges(props) {
@@ -20,9 +22,15 @@ function Challenges(props) {
         console.log(item)
         return <Link to={`/challenge/now/${item.id}`}><ChallengeItem>{item.name}</ChallengeItem></Link>
     })
+    const getChallenges = async () =>{
+        return await services.getChallenges();
+    }
+
+    const [challenges, setChallenges] = useState(() => getChallenges())
     console.log('challenges', challengeData)
     return (
         <Container>
+            <Challenge status="PROGRESS"/>
             <Title>Challenges</Title>
             <ChallengesWrap>
             {renderChallenges}
