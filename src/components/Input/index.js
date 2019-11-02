@@ -1,7 +1,6 @@
 import React from "react";
 import { Field } from './styled'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';  
-import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 
@@ -9,7 +8,7 @@ import Input from '@material-ui/core/Input';
 class TextInput extends React.Component {
 
     render() {
-        const {onChange, value} = this.props
+        const {value,onChange} = this.props
         const theme = createMuiTheme({
             palette: {
                primary: {
@@ -29,7 +28,7 @@ class TextInput extends React.Component {
             <MuiThemeProvider theme = { theme }>
             <Field >
                 <InputLabel htmlFor="component-simple">Search Player</InputLabel>
-                <Input id="component-simple" value={value} onChange={() => this.onChange} />
+                <Input id="component-simple" value={value} onChange={onChange} />
             </Field>
             </MuiThemeProvider>
 

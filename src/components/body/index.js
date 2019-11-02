@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { Route, Switch } from "react-router-dom";
+import services from "../../services/Services";
 import { BodyBackground,BodyContainer,CenterContainer } from './styled'
 import Home from '../../containers/Home'
 import Challenges from '../../containers/Challenges'
@@ -7,7 +8,19 @@ import Players from '../../containers/Players'
 import Infos from '../../containers/Infos'
 import Particles from 'react-particles-js';
 
-const BodyApp = (props) => {
+class BodyApp extends Component{
+    
+     getUsers = async () =>{
+        const users = await services.getUsers().then(res => {
+            console.log(res);
+          });
+    }
+
+    componentDidMount(){
+        this.getUsers();
+    }
+    
+    render(){
   const users = [
     {
         id: "00000000-0000-0000-0000-000000000000",
@@ -87,7 +100,9 @@ const BodyApp = (props) => {
         }
     },
 ]
-  return (
+  
+
+return (
     <BodyBackground>
       <Particles
     params={{
@@ -135,6 +150,7 @@ const BodyApp = (props) => {
       </BodyContainer>
     </BodyBackground>
   )
+}
 }
 
 export default BodyApp

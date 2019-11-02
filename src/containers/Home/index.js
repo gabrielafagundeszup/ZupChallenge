@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container, Title, ButtonContainer, TitleRanking, BolderText, LightText, DescriptionContainer, Separator, GameContainer,ButtonRankingContainer } from './styled'
 import Countdown from '../../components/countdown'
-import AnimatedBackgroundColor from '../../components/AnimatedBackgroundColor'
 import Button from '../../components/button'
 import ListUsers from '../../components/ListUsers'
 

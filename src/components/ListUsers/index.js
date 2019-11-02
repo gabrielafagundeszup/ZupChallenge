@@ -3,11 +3,10 @@ import { Container, InfoDescription, NameDescription, UserContainer, Name, Small
 import _ from 'lodash'
 
 const ListUsers = props => {
-    const { users } = props;
-    console.log('user', users)
+    const { users, unlimited } = props;
     const renderUser = _.orderBy(users, ['points'], ['desc']).slice(0, 5).map((user, index) => {
         return (
-            <Container className="users">
+            <Container key={index+1} className="users">
                 <InfoDescription>
                     <Index>
                         #{index + 1}

@@ -3,7 +3,6 @@ import {ThemeProvider } from 'styled-components'
 import { BrowserRouter as Router} from "react-router-dom";
 import theme from './core/constants/theme'
 import Layout from './containers/Layout'
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
