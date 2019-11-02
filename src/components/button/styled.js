@@ -10,6 +10,10 @@ export const StyledButton = styled.button`
   border:0;
   cursor:pointer;
   font-weight:${({ theme }) => theme.typography.weights.bold};
+  & a{
+    color:#000;
+    text-decoration:none;
+  }
 `
 
 export const BigButton = styled.button`
@@ -23,4 +27,8 @@ export const BigButton = styled.button`
   font-weight:${({ theme }) => theme.typography.weights.bold};
   font-size: 1.5rem;
   box-shadow: 5px 6px #00000040;
+  & a{
+    color:#000;
+    text-decoration:none;
+  }
 `

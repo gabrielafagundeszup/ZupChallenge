@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch } from "react-router-dom";
-import { BodyBackground } from './styled'
+import { BodyBackground,BodyContainer,CenterContainer } from './styled'
 import Home from '../../containers/Home'
 import Challenges from '../../containers/Challenges'
 import Players from '../../containers/Players'
@@ -8,6 +8,85 @@ import Infos from '../../containers/Infos'
 import Particles from 'react-particles-js';
 
 const BodyApp = (props) => {
+  const users = [
+    {
+        id: "00000000-0000-0000-0000-000000000000",
+        username: "Alice",
+        email: "alice@people.me",
+        points: 92556,
+        _links: {
+            self: {
+                href: "/users/00000000-0000-0000-0000-000000000000"
+            }
+        }
+    },
+    {
+        id: "00000000-0000-0000-0000-000000000000",
+        username: "Bob",
+        email: "bob@people.me",
+        points: 87726,
+        _links: {
+            self: {
+                href: "/users/00000000-0000-0000-0000-000000000000"
+            }
+        }
+    },
+    {
+        id: "00000000-0000-0000-0000-000000000000",
+        username: "Bob",
+        email: "bob@people.me",
+        points: 100000,
+        _links: {
+            self: {
+                href: "/users/00000000-0000-0000-0000-000000000000"
+            }
+        }
+    },
+    {
+        id: "00000000-0000-0000-0000-000000000000",
+        username: "Bob",
+        email: "bob@people.me",
+        points: 23823,
+        _links: {
+            self: {
+                href: "/users/00000000-0000-0000-0000-000000000000"
+            }
+        }
+    },
+    {
+        id: "00000000-0000-0000-0000-000000000000",
+        username: "Alice",
+        email: "alice@people.me",
+        points: 12356,
+        _links: {
+            self: {
+                href: "/users/00000000-0000-0000-0000-000000000000"
+            }
+        }
+    },
+    {
+        id: "00000000-0000-0000-0000-000000000000",
+        username: "Alice",
+        email: "alice@people.me",
+        points: 3453,
+        _links: {
+            self: {
+                href: "/users/00000000-0000-0000-0000-000000000000"
+            }
+        }
+    },
+    {
+        id: "00000000-0000-0000-0000-000000000000",
+        username: "Alice",
+        email: "alice@people.me",
+        points: 1231,
+        _links: {
+            self: {
+                href: "/users/00000000-0000-0000-0000-000000000000"
+            }
+        }
+    },
+]
   return (
     <BodyBackground>
       <Particles
@@ -29,15 +108,18 @@ const BodyApp = (props) => {
 	        }
 	    }
 	}} />
+      
+      <BodyContainer>
+        <CenterContainer>
       <Switch>
         <Route
           exact
           path="/"
-          component={() => <Home />}
+          component={() => <Home users={users} />}
         />
         <Route
           path="/players"
-          component={() => <Players />}
+          component={() => <Players users={users} />}
         />
         <Route
           path="/challenges"
@@ -49,6 +131,8 @@ const BodyApp = (props) => {
         />
         {/* <Route path="*" component={NotFound} /> */}
       </Switch>
+      </CenterContainer>
+      </BodyContainer>
     </BodyBackground>
   )
 }
