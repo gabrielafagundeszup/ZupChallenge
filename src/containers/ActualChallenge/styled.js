@@ -18,22 +18,3 @@ export const Title = styled.span`
   color:${({ theme }) => theme.palette.blues.darkest};
   z-index: 1;
 `
-
-export const ChallengesWrap = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`
-
-export const ChallengeItem = styled.div`
-font-family:${({ theme }) => theme.typography.families.text};
-font-weight:bold;
-font-size: 1rem;
-background-color: #053842c7;
-    padding: 5rem 2rem;
-    color: #fff;
-    text-decoration: none;
-    position: relative;
-
-`

@@ -3,12 +3,13 @@ import { Container, Title, ButtonContainer, TitleRanking, BolderText, LightText,
 import Countdown from '../../components/countdown'
 import Button from '../../components/button'
 import ListUsers from '../../components/ListUsers'
+import _ from 'lodash'
 
 const Home = props => {
     const {users} = props;
+        const userData = _.get(users, '_embedded.users', [])
     return (
         <Container>
-            {/* <AnimatedBackgroundColor /> */}
             <GameContainer>
                 <Title>Titulo do desafio</Title>
                 <div>
@@ -25,7 +26,7 @@ const Home = props => {
                 <BolderText>Aqui você pode ver o ranking do nosso desafio</BolderText>
                 <LightText>Lembrando que os pontos são acumulados a cada dia e a grande final será na convenção com premiação no evento para os 3 zuppers que mais acertarem</LightText>
             </DescriptionContainer>
-            <ListUsers users={users} />
+            <ListUsers users={userData} />
 
             <ButtonRankingContainer>
                 <Button path="/players" disabled> See all ranking</Button>
