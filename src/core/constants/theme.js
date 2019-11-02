@@ -1,4 +1,5 @@
 export const colors = {
+    correct: '#00ff00',
     blues: {
       medium: '#0EA5B9',
       dark: '#0F6178',
