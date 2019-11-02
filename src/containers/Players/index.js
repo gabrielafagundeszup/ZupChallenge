@@ -61,23 +61,33 @@ import ListUsers from '../../components/ListUsers'
 
 class Players extends Component {
     state={
-        player: 'GABI'
+        players: null
     }
 
-    handleChange(){
+    filterList(event){
+        const { users } = this.props;
+        const updatedList = users.filter(function(item){
+            return item.toLowerCase().search(
+              event.target.value.toLowerCase()) !== -1;
+          });
+        this.setState({players: updatedList});
+    };
 
-    }
+    componentWillMount(){
+        this.setState({items: this.props.users})
+    };
+
     render() {
         const { users } = this.props;
         return (
             <Container>
                 <Title>Ranking of Zuppers</Title>
                 <TextInput
-                value={this.state.player}
+                    value={this.state.players}
                    onChange={this.filterList}
                 />
                 <ListUsersWrapper>
-                    <ListUsers users={users} />
+                    <ListUsers users={this.state.items} />
                 </ListUsersWrapper>
             </Container>
 
