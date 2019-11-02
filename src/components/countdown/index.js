@@ -30,22 +30,15 @@ class Countdown extends Component{
 		}
 	}
     render(){
-        const { days, hours, minutes, seconds } = this.state;
+        const { hours, minutes, seconds } = this.state;
 
         if(!seconds) {
 			return null;
         }
         
         return(
-            <div>
+            
 				<CountdownWrapper>
-					{days && (
-						<CountdownItem>
-							{days}
-							<span>days</span>
-						</CountdownItem>
-                    )}
-                    :
 					{hours && (
 						<CountdownItem>						
 							{hours}
@@ -67,7 +60,7 @@ class Countdown extends Component{
 						</CountdownItem>
 					)}
 				</CountdownWrapper>
-			</div>
+			
         )
     }
 }
