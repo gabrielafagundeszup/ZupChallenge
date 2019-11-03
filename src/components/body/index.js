@@ -7,101 +7,34 @@ import Challenges from '../../containers/Challenges'
 import Players from '../../containers/Players'
 import Infos from '../../containers/Infos'
 import Particles from 'react-particles-js';
+import ActualChallenge from '../../containers/ActualChallenge'
+import Login from '../../containers/Login'
 
 class BodyApp extends Component{
+
+    state={
+        players: {},
+        challenges: {}
+    }
     
      getUsers = async () =>{
-        const users = await services.getUsers().then(res => {
-            console.log(res);
+        await services.getUsers().then(res => {
+            this.setState({players:res.data});
+          });
+    }
+    getChallenges = async () =>{
+        await services.getChallenges().then(res => {
+            this.setState({challenges:res.data});
           });
     }
 
     componentDidMount(){
         this.getUsers();
+        this.getChallenges();
     }
     
     render(){
-  const users = [
-    {
-        id: "00000000-0000-0000-0000-000000000000",
-        username: "Alice",
-        email: "alice@people.me",
-        points: 92556,
-        _links: {
-            self: {
-                href: "/users/00000000-0000-0000-0000-000000000000"
-            }
-        }
-    },
-    {
-        id: "00000000-0000-0000-0000-000000000000",
-        username: "Bob",
-        email: "bob@people.me",
-        points: 87726,
-        _links: {
-            self: {
-                href: "/users/00000000-0000-0000-0000-000000000000"
-            }
-        }
-    },
-    {
-        id: "00000000-0000-0000-0000-000000000000",
-        username: "Bob",
-        email: "bob@people.me",
-        points: 100000,
-        _links: {
-            self: {
-                href: "/users/00000000-0000-0000-0000-000000000000"
-            }
-        }
-    },
-    {
-        id: "00000000-0000-0000-0000-000000000000",
-        username: "Bob",
-        email: "bob@people.me",
-        points: 23823,
-        _links: {
-            self: {
-                href: "/users/00000000-0000-0000-0000-000000000000"
-            }
-        }
-    },
-    {
-        id: "00000000-0000-0000-0000-000000000000",
-        username: "Alice",
-        email: "alice@people.me",
-        points: 12356,
-        _links: {
-            self: {
-                href: "/users/00000000-0000-0000-0000-000000000000"
-            }
-        }
-    },
-    {
-        id: "00000000-0000-0000-0000-000000000000",
-        username: "Alice",
-        email: "alice@people.me",
-        points: 3453,
-        _links: {
-            self: {
-                href: "/users/00000000-0000-0000-0000-000000000000"
-            }
-        }
-    },
-    {
-        id: "00000000-0000-0000-0000-000000000000",
-        username: "Alice",
-        email: "alice@people.me",
-        points: 1231,
-        _links: {
-            self: {
-                href: "/users/00000000-0000-0000-0000-000000000000"
-            }
-        }
-    },
-]
-  
-
+        const {players,challenges} = this.state
 return (
     <BodyBackground>
       <Particles
@@ -130,20 +63,28 @@ return (
         <Route
           exact
           path="/"
-          component={() => <Home users={users} />}
+          component={() => <Home users={players} challenges={challenges}/>}
         />
         <Route
           path="/players"
-          component={() => <Players users={users} />}
+          component={() => <Players users={players} />}
         />
         <Route
           path="/challenges"
-          component={() => <Challenges />}
+          component={() => <Challenges challenges={challenges}/>}
+        />
+        <Route path="/challenge/now/:id"
+        component={(props) => <ActualChallenge challenges={challenges} />}
         />
         <Route
           path="/infos"
           component={() => <Infos />}
         />
+        <Route
+          path="/login"
+          component={() => <Login />}
+        />
+        
         {/* <Route path="*" component={NotFound} /> */}
       </Switch>
       </CenterContainer>

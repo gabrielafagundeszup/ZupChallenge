@@ -13,7 +13,7 @@ const Nav = () => {
                         <ItemMenu to="/players">Players</ItemMenu>
                         <ItemMenu to="/infos">Infos</ItemMenu>
                     </ItemContainer>
-                    <Button>
+                    <Button path="/login">
                         Quero Participar
                     </Button>
                 </Menu>
