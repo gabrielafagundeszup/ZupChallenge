@@ -13,10 +13,15 @@ const Button = props =>{
         )
     }
     return(
-        <StyledButton>
+        <StyledButton onClick={() => props.onClick()}>
             {props.path ? <Link to={props.path}>{props.children}</Link> : props.children}
         </StyledButton>
     );
 }
+
+Button.defaultProps = {
+    onClick: () => {}
+}
+
 
 export default Button;
