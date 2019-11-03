@@ -8,6 +8,7 @@ import Players from '../../containers/Players'
 import Infos from '../../containers/Infos'
 import Particles from 'react-particles-js';
 import ActualChallenge from '../../containers/ActualChallenge'
+import Login from '../../containers/Login'
 
 class BodyApp extends Component{
 
@@ -78,6 +79,10 @@ return (
         <Route
           path="/infos"
           component={() => <Infos />}
+        />
+        <Route
+          path="/login"
+          component={() => <Login />}
         />
         
         {/* <Route path="*" component={NotFound} /> */}

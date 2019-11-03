@@ -4,7 +4,6 @@ import _ from 'lodash'
 
 const ListUsers = props => {
     const { users, unlimited } = props;
-    const userData = _.get(users, 'embedded.users',[])
     const renderUser = _.orderBy(users, ['points'], ['desc']).slice(0, 5).map((user, index) => {
         return (
             <Container key={index+1} className="users">
