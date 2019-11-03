@@ -21,10 +21,11 @@ function Players(props){
           if(user.username.toLowerCase().includes(searchPlayer)){
             return user
           }
+          return null;
         }
         );
         setSearchResults(results);
-      }, [searchPlayer]);
+      }, [props, searchPlayer]);
 
         return (
             <Container>

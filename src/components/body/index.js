@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Route, Switch, useRouteMatch} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import services from "../../services/Services";
 import { BodyBackground,BodyContainer,CenterContainer } from './styled'
 import Home from '../../containers/Home'
@@ -63,7 +63,7 @@ return (
         <Route
           exact
           path="/"
-          component={() => <Home users={players} />}
+          component={() => <Home users={players} challenges={challenges}/>}
         />
         <Route
           path="/players"
@@ -74,7 +74,7 @@ return (
           component={() => <Challenges challenges={challenges}/>}
         />
         <Route path="/challenge/now/:id"
-        component={(props) => <ActualChallenge {...props} />}
+        component={(props) => <ActualChallenge challenges={challenges} />}
         />
         <Route
           path="/infos"

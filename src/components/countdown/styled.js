@@ -22,6 +22,5 @@ width: 200px;
 	font-weight: 600;
   text-transform: uppercase;
   position: relative;
-    top: -15px;
 }
 `

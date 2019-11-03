@@ -1,20 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container, Title, ChallengesWrap, ChallengeItem, ChallengeLink, IconBox, TitleContainer, IconContainer } from './styled'
 import _ from 'lodash'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock, faTimesCircle, faPlayCircle } from '@fortawesome/free-solid-svg-icons'
-import services from '../../services/Services'
-import Challenge from '../../components/challenge'
 
 
 function Challenges(props) {
     
-
-    const [challenges, setChallenges] = useState(() => getChallenges())
-    const getChallenges = async () =>{
-        return await services.getChallenges();
-    }
     const { challenges } = props;
     const challengeData = _.get(challenges, '_embedded.challenges', [])
     const renderChallenges = challengeData && challengeData.map((item, index) => {
@@ -38,7 +31,7 @@ function Challenges(props) {
         }
 
         return (
-            <ChallengeLink status={status} to={status === 'Moment' ? `/challenge/now/${item.id}` : `/challenges`}>
+            <ChallengeLink key={item.id} status={status} to={status === 'Moment' ? `/challenge/now/${item.id}` : `/challenges`}>
                 <ChallengeItem status={status}>
                     <IconContainer>
                         <IconBox>
@@ -77,7 +70,6 @@ function Challenges(props) {
     console.log('challenges', challengeData)
     return (
         <Container>
-            <Challenge status="PROGRESS"/>
             <Title>Challenges</Title>
             <ChallengesWrap>
                 {renderChallenges}

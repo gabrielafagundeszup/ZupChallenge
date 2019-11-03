@@ -1,14 +1,18 @@
 import React from 'react'
-import { Container, Title, ListUsersWrapper } from './styled'
+import { Container, Title } from './styled'
 import _ from 'lodash'
+import Challenge from '../../components/challenge'
+import { useParams } from "react-router-dom";
 
 function ActualChallenge(props){
-    const {challenges,match,globalStore} = props;
+    const {challenges} = props;
     const challengeData = _.get(challenges, '_embedded.challenges', [])
-    console.log('challenges',challengeData)
+    let { id } = useParams();
+    const current = _.filter(challengeData,['id', id])
     return(
         <Container>
             <Title>Actual Challenge</Title>
+            <Challenge current={current} status="PROGRESS"/>
         </Container>
         
     );

@@ -47,9 +47,8 @@ const questions = {
 }
 
 const Challenge = ({
-  challengeStatus
+  challengeStatus,current
 }) => {
-
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [finalizedChallenge, setFinalizedChallenge ] = useState(false)
 
