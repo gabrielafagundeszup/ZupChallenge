@@ -74,7 +74,6 @@ function Challenges(props) {
             <ChallengesWrap>
                 {renderChallenges}
             </ChallengesWrap>
-
         </Container>
 
     );
