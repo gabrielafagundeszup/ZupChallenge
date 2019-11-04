@@ -23,4 +23,7 @@ position: relative;
 
 export const CenterContainer = styled.div`
 width:70%;
+@media (max-width: 768px) {
+    width:80%;
+  }
 `

@@ -21,7 +21,7 @@ export const Title = styled.span`
   margin-bottom:1rem;
 `
 
-export const LoginContainer= styled.div`
+export const LoginContainer = styled.div`
 width: 30%;
     background-color: #022225e0;
     padding: 3rem 5rem; 
@@ -30,17 +30,22 @@ width: 30%;
     position: relative;
     display: flex;
     flex-direction: column;
+    @media (max-width: 768px) {
+    width: 90%;
+    background-color: #022225e0;
+    padding: 3rem 2rem;
+    }
 `
 
 
-export const InputContainer= styled.div`
+export const InputContainer = styled.div`
 margin-bottom:3rem;
 & >div{
   margin-top:1.5rem;
 }
 `
 
-export const Error= styled.span`
+export const Error = styled.span`
 color: #fff;
 font-family: quicksand;
 font-size: 0.7rem;

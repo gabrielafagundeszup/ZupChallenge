@@ -8,6 +8,9 @@ margin-bottom: 20px;
 padding: 10px 20px;
 background-color: transparent;
 font-family:${({ theme }) => theme.typography.families.text};
+@media (max-width: 768px) {
+  padding: 15px 10px;
+} 
 `
 
 export const InfoDescription = styled.div`
@@ -46,19 +49,27 @@ font-size:18px;
 export const SmallText = styled.span`
 font-size:14px;
 font-weight:300;
+@media (max-width: 768px) {
+    font-size:12px;
+} 
 `
 
 export const Points = styled.span`
 font-size:24px;
 font-weight:700;
+@media (max-width: 768px) {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size:18px;
+} 
 `
-
-
 
 export const Index = styled.div`
 font-weight:bold;
 font-size:18px;
 padding-right:20px;
+@media (max-width: 768px) {
+  padding-right:10px;
+} 
 `
-
-

@@ -27,6 +27,10 @@ export const TitleRanking = styled.span`
 font-family:${({ theme }) => theme.typography.families.title};
 font-size: 5rem;
 color: ${({ theme }) => theme.palette.neutral.lightest};
+text-align:center;
+@media (max-width: 768px) {
+  font-size: rem;
+} 
 `
 
 export const BolderText = styled.span`
@@ -34,6 +38,7 @@ font-family:${({ theme }) => theme.typography.families.text};
 font-size:1.2 rem
 font-weight:700;
 color:#fff;
+text-align:center;
 `
 
 export const LightText = styled.span`

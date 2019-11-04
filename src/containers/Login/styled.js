@@ -4,9 +4,7 @@ export const Container = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-
 `
-
 export const Title = styled.span`
   font-family:${({ theme }) => theme.typography.families.text};
   background-color: ${({ theme }) => theme.palette.neutral.lightest};
@@ -28,6 +26,10 @@ export const FormBox= styled.div`
     position: relative;
     display: flex;
     flex-direction: row;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      margin-bottom: 3rem;
+    }
 `
 
 export const LoginContainer= styled.div`
@@ -35,6 +37,9 @@ display: flex;
 flex-direction: column;
 padding: 2rem;
 width: 50%;
+@media (max-width: 768px) {
+  width:auto;
+}
 `
 export const SignUpContainer= styled.div`
 display: flex;
@@ -46,6 +51,12 @@ justify-content: center;
     background-color: #032a2fdb;
     border-top-right-radius: 0.8rem;
     border-bottom-right-radius: 0.8rem;
+    @media (max-width: 768px) {
+      width:auto;
+      border-top-right-radius: 0;
+    border-bottom-right-radius: 0.8rem;
+    border-bottom-left-radius: 0.8rem;
+    }
 `
 
 export const InputContainer= styled.div`
@@ -67,7 +78,7 @@ export const SignUpDescription = styled.span`
     margin: 20px 0;
 `
 
-export const ErrorContainer= styled.span`
+export const ErrorContainer = styled.span`
 color: #fff;
 font-family: quicksand;
 font-size: 0.7rem;
