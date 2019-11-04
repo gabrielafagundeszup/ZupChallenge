@@ -98,6 +98,13 @@ const Question = ({
         </div>
       )
     }
+    if (currentQuestion.status === 'ANSWERED') {
+      return (
+        <div>
+          Você já respondeu a essa pergunta.
+        </div>
+      )
+    }
   }
 
   const renderOptions = () => (

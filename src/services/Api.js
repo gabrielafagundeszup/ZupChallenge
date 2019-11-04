@@ -24,7 +24,7 @@ const Services = {
     ),
   getChallenges: () =>
     axios.get(
-      `${url.BASE_URL}/challenges`,
+      `${url.BASE_URL}/challenges`, 
       config
     ),
   authUser: (data) =>
@@ -35,14 +35,17 @@ const Services = {
     ),
   getQuestions: (questionsUrl) =>
     axios.get(
-      `${url.BASE_URL}${questionsUrl}`
+      `${url.BASE_URL}${questionsUrl}`,
+      config
     ),
   getQuestion: (questionUrl) =>
     axios.get(
-      `${url.BASE_URL}${questionUrl}`
+      `${url.BASE_URL}${questionUrl}`,
+      config
     ),
   postAnswer: (questionUrl, choiceId) =>
-    axios.post(`${url.BASE_URL}${questionUrl}/answers`, { choice: choiceId }
+    axios.post(`${url.BASE_URL}${questionUrl}/answers`, { choice: parseInt(choiceId) },
+    config
     )
 };
 
