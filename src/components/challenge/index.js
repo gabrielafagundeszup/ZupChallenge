@@ -1,54 +1,30 @@
 import React, { useState } from 'react'
+import Api from "../../services/Api";
 import Question from '../question'
-
-const questions = {
-  questions: [
-    {
-      "id": "a40a5a5f-1e46-4e98-878c-a427a9cc038a",
-      "name": "Foo",
-      "status": "PENDING",
-      "_links": {
-        "self": {
-          "href": "/questions/a40a5a5f-1e46-4e98-878c-a427a9cc038a"
-        }
-      }
-    },
-    {
-      "id": "a40a5a5f-1e46-4e98-878c-a427a9cc038a",
-      "name": "Zoo",
-      "status": "WRONG",
-      "_links": {
-        "self": {
-          "href": "/questions/a40a5a5f-1e46-4e98-878c-a427a9cc038a"
-        }
-      }
-    },
-    {
-      "id": "a40a5a5f-1e46-4e98-878c-a427a9cc038a",
-      "name": "Too",
-      "status": "PENDING",
-      "_links": {
-        "self": {
-          "href": "/questions/a40a5a5f-1e46-4e98-878c-a427a9cc038a"
-        }
-      }
-    },
-    {
-      "id": "a40a5a5f-1e46-4e98-878c-a427a9cc038a",
-      "name": "Loo",
-      "status": "PENDING",
-      "_links": {
-        "self": {
-          "href": "/questions/a40a5a5f-1e46-4e98-878c-a427a9cc038a"
-        }
-      }
-    }
-  ]
-}
+import {
+  Finalized
+} from './styled'
 
 const Challenge = ({
-  challengeStatus,current
+  challengeStatus,
+  current
 }) => {
+
+  const initializeQuestions = () => {
+    if (current.length) {
+      const questionsUrl = current[0]._links.self.href
+      return getQuestions(questionsUrl)
+    } else {
+      return null
+    }
+  }
+
+  const getQuestions = async (questionsUrl) =>{
+    return await Api.getQuestions(questionsUrl).then(res => {
+      setQuestions(res.data._embedded.questions)
+    })
+  }
+  const [questions, setQuestions] = useState(() => initializeQuestions())
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [finalizedChallenge, setFinalizedChallenge ] = useState(false)
 
@@ -60,8 +36,9 @@ const Challenge = ({
     setCurrentQuestion(currentQuestion - 1)
   }
 
-  const submitAnswer = (questionId, optionId) => {
-    console.log('SUBMETER RESPOSTA AO BACK')
+  const submitAnswer = async (questionUrl, optionId) => {
+    const response = await Api.postAnswer(questionUrl, optionId)
+    console.log(response)
     if(checkIfIsLastQuestion()) {
       setFinalizedChallenge(true)
     }
@@ -71,7 +48,7 @@ const Challenge = ({
   }
 
   const checkIfIsLastQuestion = () => (
-    currentQuestion === questions.questions.length - 1 
+    currentQuestion === questions.length - 1
   )
 
   const checkIfIsFirstQuestion = () => (
@@ -82,23 +59,27 @@ const Challenge = ({
     challengeStatus === 'SCHEDULED'
     ? <div>Esse desafio ainda nao começou</div>
     : (
-      <Question
+        <Question
         isFirst={checkIfIsFirstQuestion()}
         isLast={checkIfIsLastQuestion()}
         challengeStatus={challengeStatus}
         submitAnswer={(questionId, optionId) => submitAnswer(questionId, optionId)}
         nextQuestion={() => nextQuestion()}
         previousQuestion={() => previousQuestion()}
-        question={questions.questions[currentQuestion]}
+        question={questions[currentQuestion]}
       />
-    )
+      )
   )
 
-  return (
+  const checkIfIsFinalizedChallenge = () => (
     finalizedChallenge
-   ? <div>Voce finalizou o desafio.</div>
+   ? <Finalized>Voce finalizou o desafio.</Finalized>
    : checkChallengeStatus()
   )
+
+  return questions && questions.length
+    ? checkIfIsFinalizedChallenge()
+    : <div>Carregando</div>
 }
 
 export default Challenge
