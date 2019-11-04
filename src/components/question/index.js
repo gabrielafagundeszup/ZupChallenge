@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import services from "../../services/Services";
 import Button from '../button'
 import {
   WrapperQuestion,
@@ -20,128 +21,146 @@ const Question = ({
   submitAnswer
 }) => {
 
-  const options = [ {
-    text: 'Essa é a questao 1',
-    id: '1',
-    isCorrect: true,
-  },
-  {
-    text: 'Essa é a questao 2',
-    id: '2',
-    isCorrect: false
-  },
-  {
-    text: 'Essa é a questao 3',
-    id: '3',
-    isCorrect: false,
-  },
-  {
-    text: 'Essa é a questao 4',
-    id: '4',
-    isCorrect: false,
-  },
-  {
-    text: 'Essa é a questao 5',
-    id: '5',
-    isCorrect: false,
-    checked: true,
+  const getQuestion = async () => {
+    const questionUrl = question._links.self.href
+    await services.getQuestion(questionUrl).then(res => {
+      setCurrentQuestion(res.data);
+    });
   }
-  ]
-  const [disabledQuestion, setDisabledQuestion] = useState(question.status !== 'PENDING')
+
+  const [currentQuestion, setCurrentQuestion] = useState(() => getQuestion())
   const [selectedOption, setSelectedOption] = useState(null)
+
+  const checkIfIsDisabled = () => (
+    currentQuestion.status !== 'PENDING'
+  )
 
   const renderdisabledChallengeButtons = () => (
     <WrapperButtons>
-      { !isFirst && <Button onClick={() => previousQuestion()}>
+      {!isFirst && <Button onClick={() => previousQuestion()}>
         Back
       </Button>}
-      {isLast 
-      ? (
-        <Button path='/challenges'>
-          Back to Challenges
+      {isLast
+        ? (
+          <Button path='/challenges'>
+            Back to Challenges
         </Button>
-      )
-      : (
-        <Button onClick={() => nextQuestion()}> 
-          Next
+        )
+        : (
+          <Button onClick={() => nextQuestion()}>
+            Next
         </Button>
-      )
+        )
       }
     </WrapperButtons>
   )
 
-  useEffect( () => {
-    setDisabledQuestion(question.status !== 'PENDING')
+  const setQuestionUpdate = () => {
+    setCurrentQuestion(() => getQuestion())
     setSelectedOption(null)
-  }, [ question ]);
+  }
+
+  useEffect(() => {
+    setQuestionUpdate()
+  }
+    , [question]);
 
   const renderAbleQuestionButtons = () => (
     <WrapperButtons>
-      { !isFirst && <Button onClick={() => previousQuestion()}>
+      {!isFirst && <Button onClick={() => previousQuestion()}>
         Voltar
       </Button>}
-      <Button onClick={() => submitAnswer(question.id, selectedOption)}>
+      <Button onClick={() => submitAnswer(question._links.self.href, selectedOption)}>
         Responder
       </Button>
     </WrapperButtons>
   )
 
+  const renderStatusAnsweredQuestion = () => {
+    if (currentQuestion.status === 'CORRECT') {
+      return (
+        <div>
+          Você acertou essa pergunta.
+        </div>
+      )
+    }
+    if (currentQuestion.status === 'WRONG') {
+      return (
+        <div>
+          Você errou essa pergunta.
+        </div>
+      )
+    }
+    if (currentQuestion.status === 'MISSED') {
+      return (
+        <div>
+          Você não respondeu a essa pergunta na data do desafio.
+        </div>
+      )
+    }
+  }
+
   const renderOptions = () => (
-    disabledQuestion
-    ? (
-      <WrapperOptions>
-      {options.map(option => (
-        <div key={option.id}>
-          <Option
-            disabled
-            checked={option.checked}
-            name="question_options"
-            type="radio"
-            id={option.id}
-          />
-          <Label isCorrect={option.isCorrect} htmlFor={option.id}>{option.text}</Label>
-        </div>
-      ))}
-    </WrapperOptions>
-    )
-    : (
-      <WrapperOptions>
-      {options.map(option => (
-        <div key={option.id}>
-          <Option
-            onChange={ev => setSelectedOption(ev.currentTarget.id)}
-            checked={option.id === selectedOption}
-            name="question_options"
-            type="radio"
-            id={option.id}
-          />
-          <Label htmlFor={option.id}>{option.text}</Label>
-        </div>
-      ))}
-    </WrapperOptions>
-    ) 
+    checkIfIsDisabled()
+      ? (
+        <WrapperOptions>
+          {currentQuestion.choices.map(option => (
+            <div key={option.id}>
+              <Option
+                disabled
+                checked={option.checked}
+                name="question_options"
+                type="radio"
+                id={option.id}
+              />
+              <Label isCorrect={option.isCorrect} htmlFor={option.id}>{option.text}</Label>
+            </div>
+          ))}
+        </WrapperOptions>
+      )
+      : (
+        <WrapperOptions>
+          {currentQuestion.choices.map(option => (
+            <div key={option.id}>
+              <Option
+                onChange={ev => setSelectedOption(ev.currentTarget.id)}
+                name="question_options"
+                type="radio"
+                id={option.id}
+              />
+              <Label htmlFor={option.id}>{option.text}</Label>
+            </div>
+          ))}
+        </WrapperOptions>
+      )
   )
 
   const renderQuestion = () => (
     <StyledQuestion>
-      {question.name}
+      {currentQuestion.text}
     </StyledQuestion>
   )
 
   const renderTitle = () => (
     <Title>
-      {`Question ${question.name}`}
+      {currentQuestion.name}
     </Title>
   )
 
-  return (
-    <WrapperQuestion key={question.id}>
+  const startRenderQuestion = () => (
+    <WrapperQuestion key={currentQuestion.id}>
       {renderTitle()}
       {renderQuestion()}
-      {renderOptions()}
-      {disabledQuestion ? renderdisabledChallengeButtons() : renderAbleQuestionButtons()}
+      {currentQuestion.choices && renderOptions()}
+      {renderStatusAnsweredQuestion()}
+      {checkIfIsDisabled() ? renderdisabledChallengeButtons() : renderAbleQuestionButtons()}
     </WrapperQuestion>
   )
+
+  return currentQuestion
+    ? startRenderQuestion()
+    : <div> Carregando </div>
+
 }
 
 export default Question
