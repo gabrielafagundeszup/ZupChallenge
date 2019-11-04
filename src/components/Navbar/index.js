@@ -23,8 +23,6 @@ function Nav(props){
         auth && getUserData();
       }, [getUserData, props]);
 
-
-
       const logout = async () => {
         await Api.logout().then(res => {
             setAuth(res.data)
@@ -44,16 +42,15 @@ function Nav(props){
                         <ItemMenu to="/players">Players</ItemMenu>
                         <ItemMenu to="/infos">Infos</ItemMenu>
                     </ItemContainer>
-                    {!userLogged ?
+                    {!userLogged && 
                     <Button path="/login">
                         Quero Participar
-                    </Button>
-                    : (
+                    </Button>}
+                    {userLogged &&
                     <SignOut>
                     {userLogged.email}
                     <FontAwesomeIcon onClick={logout} icon={faSignOutAlt} />
                     </SignOut>
-                    )
                     }
                 </Menu>
             </Container>
