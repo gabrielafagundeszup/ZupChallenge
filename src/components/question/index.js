@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import services from "../../services/Services";
+import Api from "../../services/Api";
 import Button from '../button'
 import {
   WrapperQuestion,
@@ -23,7 +23,7 @@ const Question = ({
 
   const getQuestion = async () => {
     const questionUrl = question._links.self.href
-    await services.getQuestion(questionUrl).then(res => {
+    await Api.getQuestion(questionUrl).then(res => {
       setCurrentQuestion(res.data);
     });
   }

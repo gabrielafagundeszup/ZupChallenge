@@ -8,7 +8,7 @@ const Button = props =>{
             return  <Link to={props.disabled ? props.path: '/'}><BigButton disabled={props.disabled}>{props.children}</BigButton></Link>
         }
         return(
-                <BigButton onClick={() => !props.disabled && props.onClick()}>{props.children}</BigButton>
+                <BigButton disabled={props.disabled} onClick={() => !props.disabled && props.onClick()}>{props.children}</BigButton>
         )
     }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import services from "../../services/Services";
+import Api from "../../services/Api";
 import Question from '../question'
 import {
   Finalized
@@ -20,7 +20,7 @@ const Challenge = ({
   }
 
   const getQuestions = async (questionsUrl) =>{
-    return await services.getQuestions(questionsUrl).then(res => {
+    return await Api.getQuestions(questionsUrl).then(res => {
       setQuestions(res.data._embedded.questions)
     })
   }
@@ -37,7 +37,7 @@ const Challenge = ({
   }
 
   const submitAnswer = async (questionUrl, optionId) => {
-    const response = await services.postAnswer(questionUrl, optionId)
+    const response = await Api.postAnswer(questionUrl, optionId)
     console.log(response)
     if(checkIfIsLastQuestion()) {
       setFinalizedChallenge(true)

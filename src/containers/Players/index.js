@@ -31,8 +31,9 @@ function Players(props){
             <Container>
                 <Title>Ranking of Zuppers</Title>
                 <TextInput
-                    value={searchPlayer}
-                   onChange={handleChange}
+                label="Search Player"
+                value={searchPlayer}
+                onChange={handleChange}
                 />
                 <ListUsersWrapper>
                     <ListUsers users={searchResults} unlimited />
