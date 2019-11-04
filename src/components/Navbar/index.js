@@ -9,13 +9,8 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 function Nav(props){
     const {auth, setAuth} = props;
     const [userLogged,setUserLogged] = useState();
-
-    useEffect(() => {
-        const {auth} = props;
-        auth && getUserData();
-      }, [props]);
-
-      const getUserData = async () => {
+    
+    const getUserData = async () => {
         const {auth} = props;
         const url = _.get(auth,"_links.dashboard.href", '')
         await Api.customEndPoint(url).then(res => {
@@ -23,10 +18,17 @@ function Nav(props){
         })
       }
 
+    useEffect(() => {
+        const {auth} = props;
+        auth && getUserData();
+      }, [getUserData, props]);
+
+
+
       const logout = async () => {
-        const url = _.get(userLogged,"_links.logout.href", '')
-        await Api.customEndPoint(url).then(res => {
-            console.log(res.data)
+        await Api.logout().then(res => {
+            setAuth(res.data)
+            setUserLogged(res.data)
         }).catch(function(e){
             console.log(e.response)
         });
@@ -47,7 +49,7 @@ function Nav(props){
                         Quero Participar
                     </Button>
                     : (
-                        <SignOut>
+                    <SignOut>
                     {userLogged.email}
                     <FontAwesomeIcon onClick={logout} icon={faSignOutAlt} />
                     </SignOut>
