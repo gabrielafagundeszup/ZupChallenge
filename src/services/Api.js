@@ -43,14 +43,11 @@ const Services = {
       `${url.BASE_URL}${questionUrl}`,
       config
     ),
-  postAnswer: (questionUrl, choiceId) =>
+    postAnswer: (questionUrl, choiceId) =>
     axios.post(`${url.BASE_URL}${questionUrl}/answers`, { choice: parseInt(choiceId) },
-    config,
-    signUp: (data) =>
-    axios.post(
-      `${url.BASE_URL}/users`,
-      data
+    config
     )
+    
 };
 
 export default Services;
