@@ -11,8 +11,12 @@ const Challenge = ({
 }) => {
 
   const initializeQuestions = () => {
-    const questionsUrl = current[0]._links.self.href
-    return getQuestions(questionsUrl)
+    if (current.length) {
+      const questionsUrl = current[0]._links.self.href
+      return getQuestions(questionsUrl)
+    } else {
+      return null
+    }
   }
 
   const getQuestions = async (questionsUrl) =>{
@@ -73,10 +77,9 @@ const Challenge = ({
    : checkChallengeStatus()
   )
 
-  return questions.length
+  return questions && questions.length
     ? checkIfIsFinalizedChallenge()
     : <div>Carregando</div>
-
 }
 
 export default Challenge
