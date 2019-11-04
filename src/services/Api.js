@@ -72,7 +72,18 @@ const Services = {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       }
     }
-    )
+    ),
+    logout: () =>
+    axios.delete(
+      `${url.BASE_URL}/auth/logout`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      }
+    ),
+
 
 };
 

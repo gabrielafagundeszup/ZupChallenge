@@ -9,7 +9,7 @@ import { faUser,faEnvelope, faTimesCircle } from '@fortawesome/free-solid-svg-ic
 import _ from 'lodash'
 
 function Login(props) {
-    const { auth, setAuth } = props;
+    const { setAuth } = props;
     let history = useHistory();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');

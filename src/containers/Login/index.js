@@ -9,7 +9,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import SignUpImg from '../../core/assets/img/signup.svg'
 
 function Login(props) {
-    const { auth, setAuth } = props;
+    const { setAuth } = props;
     let history = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

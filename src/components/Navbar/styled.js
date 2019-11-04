@@ -61,6 +61,7 @@ export const SignOut = styled.div`
 & svg{
   margin-left:10px;
   color:#FEBC15;
+  cursor:pointer;
 }
 
 `

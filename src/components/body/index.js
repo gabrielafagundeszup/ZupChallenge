@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route, Switch } from "react-router-dom";
 import Api from "../../services/Api";
 import { BodyBackground, BodyContainer, CenterContainer } from './styled'

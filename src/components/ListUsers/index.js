@@ -4,7 +4,8 @@ import _ from 'lodash'
 
 const ListUsers = props => {
     const { users, unlimited } = props;
-    const renderUser = _.orderBy(users, ['points'], ['desc']).slice(0, 5).map((user, index) => {
+    const functionUsers = !unlimited ? _.orderBy(users, ['points'], ['desc']).slice(0, 5) : _.orderBy(users, ['points'], ['desc'])
+    const renderUser = functionUsers.map((user, index) => {
         return (
             <Container key={index+1} className="users">
                 <InfoDescription>

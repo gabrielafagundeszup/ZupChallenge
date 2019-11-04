@@ -8,7 +8,7 @@ import moment from 'moment'
 
 function Home (props){
     const[invalidDate,setInvalidDate]= useState(false);
-    const { users, challenges,auth } = props;
+    const { users, challenges } = props;
     const userData = _.get(users, '_embedded.users', [])
     const challengeData = _.get(challenges, '_embedded.challenges', [])
     const current = _.filter(challengeData, ['status', 'IN_PROGRESS'])
@@ -20,8 +20,6 @@ function Home (props){
     return (
         <Container>
             <GameContainer>
-                {!challenges ? "Você precisa estar logado para ver os desafios" : 
-                <>
                 <Title>{title}</Title>
                 <div>
                     {challenges && habilityChallenge && <Clock setInvalidDate={setInvalidDate} deadline={date} />}
@@ -29,10 +27,6 @@ function Home (props){
                 <ButtonContainer>
                     <Button type="big" path={`/challenge/now/${id}`} disabled={!habilityChallenge}> Play the game</Button>
                 </ButtonContainer>
-                </>
-            }
-                
-                
             </GameContainer>
             <TitleRanking>Ranking of Zuppers</TitleRanking>
             <Separator></Separator>
