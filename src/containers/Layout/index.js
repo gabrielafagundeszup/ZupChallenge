@@ -1,14 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Nav from '../../components/Navbar'
 import BodyApp from '../../components/body'
 
-const Layout = () => {
+function Layout(){
+    const [auth, setAuth] = useState();
     return (
         <>
-        <Nav />
-        <BodyApp>
-            <div>Body</div>
-        </BodyApp>
+        <Nav auth={auth} setAuth={setAuth}/>
+        <BodyApp auth={auth} setAuth={setAuth}></BodyApp>
         </>
     );
 
