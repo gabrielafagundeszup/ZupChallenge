@@ -25,11 +25,9 @@ function Home (props){
     const challengeData = _.get(challenges, '_embedded.challenges', [])
     const current = _.filter(challengeData, ['status', 'IN_PROGRESS'])
     const title = _.get(current[0], 'name',[])
-    const date = moment(obj.validFrom).format("YYYY-MM-DD HH:MM")
+    const date = moment(current.validFrom).format("YYYY-MM-DD HH:MM")
     const id = _.get(current[0], 'id',[])
-    // console.log('current', current)
     const habilityChallenge = invalidDate>= 0 ? true : false
-    // console.log(current)
     return (
         <Container>
             <GameContainer>
