@@ -14,7 +14,7 @@ border-color:#fff;
     font-family:${({ theme }) => theme.typography.families.text};
     font-weight:bold;
     color:#fff;
-    font-size:${props => props.size === 'small' ? '1.5rem' : '3rem'};
+    font-size:${props => props.size === 'small' ? '1rem' : '3rem'};
 }
 & .MuiInput-underline:before,.MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid #fff;

@@ -1,13 +1,14 @@
 import React,{useState, useEffect} from 'react';
-import { Navbar, Container, Menu,ItemContainer, ItemMenu } from './styled'
+import { Navbar, Container, Menu,ItemContainer, ItemMenu,SignOut } from './styled'
 import Button from '../../components/button'
 import Api from '../../services/Api'
 import _ from 'lodash'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 function Nav(props){
     const {auth, setAuth} = props;
     const [userLogged,setUserLogged] = useState();
-    // console.log(auth);
 
     useEffect(() => {
         const {auth} = props;
@@ -46,12 +47,10 @@ function Nav(props){
                         Quero Participar
                     </Button>
                     : (
-                        <>
+                        <SignOut>
                     {userLogged.email}
-                    <Button onClick={logout}>
-                        Sair
-                    </Button>
-                    </>
+                    <FontAwesomeIcon onClick={logout} icon={faSignOutAlt} />
+                    </SignOut>
                     )
                     }
                 </Menu>

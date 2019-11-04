@@ -21,32 +21,17 @@ export const Title = styled.span`
   margin-bottom:1rem;
 `
 
-export const FormBox= styled.div`
+export const LoginContainer= styled.div`
+width: 30%;
     background-color: #022225e0;
+    padding: 3rem 5rem; 
     margin-top: 3rem;
     border-radius: 0.8rem;
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 `
 
-export const LoginContainer= styled.div`
-display: flex;
-flex-direction: column;
-padding: 2rem;
-width: 50%;
-`
-export const SignUpContainer= styled.div`
-display: flex;
-flex-direction: column;
-padding: 2rem;
-width: 50%;
-justify-content: center;
-    align-items: center;
-    background-color: #032a2fdb;
-    border-top-right-radius: 0.8rem;
-    border-bottom-right-radius: 0.8rem;
-`
 
 export const InputContainer= styled.div`
 margin-bottom:3rem;
@@ -55,19 +40,7 @@ margin-bottom:3rem;
 }
 `
 
-export const LoginImage= styled.img`
-width:12rem
-`
-export const SignUpDescription = styled.span`
-  font-family:${({ theme }) => theme.typography.families.text};
-  color: ${({ theme }) => theme.palette.neutral.lightest};
-  font-size: 0.9rem;
-    font-weight: bold;
-    text-align: center;
-    margin: 20px 0;
-`
-
-export const ErrorContainer= styled.span`
+export const Error= styled.span`
 color: #fff;
 font-family: quicksand;
 font-size: 0.7rem;
@@ -81,24 +54,10 @@ display: flex;
 align-items: center;
 text-align: left;
 cursor:pointer;
-animation: FadeAnimation 1s ease-in .5s forwards;
 & svg{
   margin-right: 10px;
 }
-& @keyframes FadeAnimation {
-  0% {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
 `
-
 
 
 

@@ -57,6 +57,14 @@ export const ItemMenu = styled(Link)`
     opacity: 1;
   }
 `
+export const SignOut = styled.div`
+& svg{
+  margin-left:10px;
+  color:#FEBC15;
+}
+
+`
+
 
 
 

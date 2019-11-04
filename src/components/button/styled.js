@@ -18,7 +18,7 @@ export const StyledButton = styled.button`
 
 export const BigButton = styled.button`
   background-color:${({ theme }) => theme.palette.yellow.dark};
-  background-color: ${props => !props.disabled && "#061c1f"};
+  background-color: ${(props,theme) => !props.disabled ? "#FEBC15" : "#061c1f"};
   color:#000;
   border-radius: 1000px;
   padding: 10px 50px;

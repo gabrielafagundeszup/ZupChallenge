@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
-import { Container, Title, LoginContainer, InputContainer } from './styled'
+import { Container, Title, LoginContainer, InputContainer, FormBox,SignUpContainer,LoginImage,SignUpDescription,ErrorContainer } from './styled'
 import Input from '../../components/Input'
 import Button from '../../components/button'
 import Api from "../../services/Api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import SignUpImg from '../../core/assets/img/signup.svg'
 
 function Login(props) {
     const { auth, setAuth } = props;
@@ -38,6 +39,7 @@ function Login(props) {
                 setAuth(response.data)
                 localStorage.setItem('access_token', response.data.token);
                 redirectToHome()
+                setError(null)
             })
                 .catch(function (e) {
                     setError(e.response.data.message)
@@ -45,28 +47,39 @@ function Login(props) {
         }
 
     }
+    const showError = error && <ErrorContainer>{error}</ErrorContainer>
     return (
         <Container>
-            <LoginContainer>
+            <FormBox>
+                
+                <LoginContainer>
                 <Title>Login</Title>
-                <InputContainer>
-                    <Input
-                        label="Username"
-                        value={username}
-                        onChange={handleUser}
-                        size="small"
-                        icon={<FontAwesomeIcon icon={faUser} />}
-                    />
-                    <Input
-                        label="Password"
-                        type="password"
-                        value={password}
-                        onChange={handlePassword}
-                        size="small"
-                    />
-                </InputContainer>
-                <Button onClick={setLogin}>Login</Button>
-            </LoginContainer>
+                {showError}
+                    <InputContainer>
+                        <Input
+                            label="Username"
+                            value={username}
+                            onChange={handleUser}
+                            size="small"
+                            icon={<FontAwesomeIcon icon={faUser} />}
+                        />
+                        <Input
+                            label="Password"
+                            type="password"
+                            value={password}
+                            onChange={handlePassword}
+                            size="small"
+                        />
+                    </InputContainer>
+                    <Button onClick={setLogin}>Login</Button>
+                </LoginContainer>
+                <SignUpContainer>
+                    <LoginImage src={SignUpImg} alt="Logo" />
+                    <SignUpDescription>Ainda não faz parte do nosso desafio? É só clicar no botão abaixo e se cadastrar  :)</SignUpDescription>
+                    <Button path="/signup">Quero Participar</Button>
+                </SignUpContainer>
+            </FormBox>
+
         </Container>
 
     );

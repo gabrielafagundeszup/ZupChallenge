@@ -9,6 +9,7 @@ import Infos from '../../containers/Infos'
 import Particles from 'react-particles-js';
 import ActualChallenge from '../../containers/ActualChallenge'
 import Login from '../../containers/Login'
+import SignUp from '../../containers/SignUp'
 
 function BodyApp(props) {
 
@@ -60,7 +61,7 @@ function BodyApp(props) {
             <Route
               exact
               path="/"
-              component={() => <Home users={players} challenges={challenges} />}
+              component={() => <Home users={players} challenges={challenges} auth={auth} />}
             />
             <Route
               path="/players"
@@ -80,6 +81,10 @@ function BodyApp(props) {
             <Route
               path="/login"
               component={() => <Login auth={auth} setAuth={setAuth}/>}
+            />
+            <Route
+              path="/signup"
+              component={() => <SignUp auth={auth} setAuth={setAuth}/>}
             />
 
             {/* <Route path="*" component={NotFound} /> */}

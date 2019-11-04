@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const Button = props =>{
     if(props.type=== 'big'){
         if(props.path){
-            return  <Link to={props.disabled ? props.path: '/'}><BigButton disabled={props.disabled}>{props.children}</BigButton></Link>
+            return  <Link to={props.path ? props.path : '/'}><BigButton disabled={!props.disabled}>{props.children}</BigButton></Link>
         }
         return(
-                <BigButton disabled={props.disabled} onClick={() => !props.disabled && props.onClick()}>{props.children}</BigButton>
+                <BigButton onClick={() => props.disabled && props.onClick()}>{props.children}</BigButton>
         )
     }
 
