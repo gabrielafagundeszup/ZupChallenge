@@ -42,19 +42,20 @@ function Login(props) {
                 setError(null)
             })
                 .catch(function (e) {
-                    setError(e.response.data.message)
+                    console.log(e.response)
+                    // setError(e.response.data.message)
                 });
         }
 
     }
-    const showError = error && <ErrorContainer>{error}</ErrorContainer>
+    // const showError = error && <ErrorContainer>{error}</ErrorContainer>
     return (
         <Container>
             <FormBox>
                 
                 <LoginContainer>
                 <Title>Login</Title>
-                {showError}
+                {/* {showError} */}
                     <InputContainer>
                         <Input
                             label="Username"
