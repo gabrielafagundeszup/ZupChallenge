@@ -20,8 +20,6 @@ function Home (props){
     return (
         <Container>
             <GameContainer>
-                {!challenges ? "Você precisa estar logado para ver os desafios" : 
-                <>
                 <Title>{title}</Title>
                 <div>
                     {challenges && habilityChallenge && <Clock setInvalidDate={setInvalidDate} deadline={date} />}
@@ -29,10 +27,6 @@ function Home (props){
                 <ButtonContainer>
                     <Button type="big" path={`/challenge/now/${id}`} disabled={!habilityChallenge}> Play the game</Button>
                 </ButtonContainer>
-                </>
-            }
-                
-                
             </GameContainer>
             <TitleRanking>Ranking of Zuppers</TitleRanking>
             <Separator></Separator>
