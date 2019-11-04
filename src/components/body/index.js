@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useRef,useCallback } from 'react'
 import { Route, Switch } from "react-router-dom";
 import Api from "../../services/Api";
 import { BodyBackground, BodyContainer, CenterContainer } from './styled'
@@ -65,7 +65,7 @@ function BodyApp(props) {
             />
             <Route
               path="/players"
-              component={() => <Players users={players} />}
+              component={() => <Players users={players} setPlayers={setPlayers} />}
             />
             <Route
               path="/challenges"

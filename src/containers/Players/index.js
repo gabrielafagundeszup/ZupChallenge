@@ -3,6 +3,8 @@ import { Container, Title, ListUsersWrapper } from './styled'
 import TextInput from '../../components/Input'
 import ListUsers from '../../components/ListUsers'
 import _ from 'lodash'
+import Button from '../../components/button'
+import Api from '../../services/Api'
 
 function Players(props){
     const{users} = props
@@ -17,6 +19,7 @@ function Players(props){
       useEffect(() => {
         const{users} = props
         const userData = _.get(users, '_embedded.users', [])
+        console.log('userData',users)
         const results = userData && userData.filter(user =>{
           if(user.username.toLowerCase().includes(searchPlayer)){
             return user
@@ -26,6 +29,16 @@ function Players(props){
         );
         setSearchResults(results);
       }, [props, searchPlayer]);
+
+      const nextPage=async()=>{
+        const{users, setPlayers} = props
+        const next = _.get(users, '_links.next.href', [])
+        await Api.customEndPoint(next).then(res => {
+          // const users = _.get(res.data, '_embedded.users', [])
+          setPlayers(res.data)
+      })
+        
+      }
 
         return (
             <Container>
@@ -38,6 +51,7 @@ function Players(props){
                 <ListUsersWrapper>
                     <ListUsers users={searchResults} unlimited />
                 </ListUsersWrapper>
+                {userData.length>1 && <Button onClick={nextPage}> Próxima página</Button>}
             </Container>
 
         );

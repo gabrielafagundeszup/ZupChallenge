@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://challenges.cdt.one/_'
+export const BASE_URL = 'https://challenges.zup.com.br/_'

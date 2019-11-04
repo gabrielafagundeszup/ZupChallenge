@@ -6,7 +6,7 @@ const Services = {
 
   customEndPoint: (url) =>
     axios.get(
-      `https://challenges.cdt.one/_${url}`,
+      `'https://challenges.zup.com.br/_'${url}`,
       {
         headers: {
           'Content-Type': 'application/json',

@@ -33,26 +33,26 @@ function Login(props) {
                 redirectToLogin()
                 setError(null)
             }).catch(function (e) {
-                setError(e.response.data.message)
-                console.log(error)
+                // setError(e.response.data.message)
+                console.log(e.response)
                 });
         }
 
     }
 
-    const errors = (error && error.length) && error.map(item=>{
-        const getLenght = _.get(item.constraints, "length",[])
-        const isEmail = _.get(item.constraints, "isEmail",[])
-        return <Error key={item.property}><FontAwesomeIcon icon={faTimesCircle} /> {getLenght && getLenght}{isEmail && isEmail}</Error>
-    })
-    const uniqueError = error && error.length<=1 && <Error><FontAwesomeIcon icon={faTimesCircle} /> {error.message}</Error>
+    // const errors = (error && error.length) && error.map(item=>{
+    //     const getLenght = _.get(item.constraints, "length",[])
+    //     const isEmail = _.get(item.constraints, "isEmail",[])
+    //     return <Error key={item.property}><FontAwesomeIcon icon={faTimesCircle} /> {getLenght && getLenght}{isEmail && isEmail}</Error>
+    // })
+    // const uniqueError = error && error.length<=1 && <Error><FontAwesomeIcon icon={faTimesCircle} /> {error.message}</Error>
     
     return (
         <Container>
             <LoginContainer>
                 <Title>Sign Up</Title>
-                {errors}
-                {uniqueError}
+                {/* {errors} */}
+                {/* {uniqueError} */}
                 <InputContainer>
                     <Input
                         label="Username"
