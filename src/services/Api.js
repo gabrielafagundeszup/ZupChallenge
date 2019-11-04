@@ -2,21 +2,17 @@
 import axios from "axios";
 import * as url from "../core/constants/Services";
 
-const headers = {
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-}
-
-var config = {
-  headers: headers
-};
-
 const Services = {
 
   customEndPoint: (url) =>
     axios.get(
       `https://challenges.cdt.one/_${url}`,
-      config
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      }
     ),
   getUsers: () =>
     axios.get(
@@ -24,30 +20,55 @@ const Services = {
     ),
   getChallenges: () =>
     axios.get(
-      `${url.BASE_URL}/challenges`, 
-      config
+      `${url.BASE_URL}/challenges`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      }
     ),
   authUser: (data) =>
     axios.post(
       `${url.BASE_URL}/auth/login`,
       data,
-      config
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      }
     ),
   getQuestions: (questionsUrl) =>
     axios.get(
       `${url.BASE_URL}${questionsUrl}`,
-      config
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      }
     ),
   getQuestion: (questionUrl) =>
     axios.get(
       `${url.BASE_URL}${questionUrl}`,
-      config
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      }
     ),
-    postAnswer: (questionUrl, choiceId) =>
+  postAnswer: (questionUrl, choiceId) =>
     axios.post(`${url.BASE_URL}${questionUrl}/answers`, { choice: parseInt(choiceId) },
-    config
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+      }
+    }
     )
-    
+
 };
 
 export default Services;

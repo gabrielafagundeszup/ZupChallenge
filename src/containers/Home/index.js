@@ -9,7 +9,6 @@ import moment from 'moment'
 function Home (props){
     const[invalidDate,setInvalidDate]= useState(false);
     const { users, challenges,auth } = props;
-    console.log(challenges)
     const userData = _.get(users, '_embedded.users', [])
     const challengeData = _.get(challenges, '_embedded.challenges', [])
     const current = _.filter(challengeData, ['status', 'IN_PROGRESS'])
