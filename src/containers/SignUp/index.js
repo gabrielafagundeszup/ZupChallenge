@@ -28,7 +28,6 @@ function Login(props) {
                 password: password
             }
             await Api.signUp(obj).then(response => {
-                console.log(response)
                 setAuth(response.data)
                 localStorage.setItem('access_token', response.data.token);
                 redirectToLogin()

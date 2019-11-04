@@ -39,6 +39,11 @@ const Services = {
         }
       }
     ),
+    signUp: (data) =>
+    axios.post(
+      `${url.BASE_URL}/users`,
+      data
+    ),
   getQuestions: (questionsUrl) =>
     axios.get(
       `${url.BASE_URL}${questionsUrl}`,
